@@ -1,27 +1,34 @@
 <!DOCTYPE html>
 <html>
     <head>
+        <link rel="stylesheet" type="text/css" href="index.css">
     </head>
     <body>
-        <div>
-            <div>
+        <div id="banner">
+            <div id="banner_">
                 quick diff tool
             </div>
         </div>
         
-        <!-- input 1 -->
-        <div>
-            <div></div>
-            <textarea></textarea>
-        </div>
+        <!-- input container -->
+        <div id="inputContainer">
+
+            <!-- input 1 -->
+            <div class="inputDiv">
+                <div class="inputName">input #1</div>
+                <textarea class="taInput" ></textarea>
+            </div>
+
+            <!-- input 2 -->
+            <div class="inputDiv">
+                <div class="inputName">input #1</div>
+                <textarea class="taInput"></textarea>
+            </div>
         
-        <!-- input 2 -->
-        <div>
-            <div></div>
-            <textarea></textarea>
+            <button id="computeButton">compute</button>
         </div>
+            
         
-        <button>compute</button>
         
         <!-- output -->
         <div>
