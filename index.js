@@ -1,48 +1,4 @@
-
 angular.module('LDiff', []);
-
-function solveStates(grid){
-    console.log(grid);
-    //put initial state into a stack
-    var stack = [{x:0,y:0,prev:undefined, cost:grid[0][0]}];
-    var hash = function(p){return p.x + ':' + p.y;};
-    //create history
-    var history = {};
-    var final = undefined, i;
-    
-    while(stack.length > 0){//while goal not reached,
-        //get current state
-        stack.sort((a,b) => a.cost-b.cost);
-        var current = stack.shift();
-        //if goal: end
-        if(current.x == grid.length-1 && current.y == grid.length-1){
-            final = current;
-            break;
-        }
-        //for each next state:
-        var nextStates = [{x:current.x+1, y:current.y, prev:current}, {x:current.x, y:current.y+1, prev:current},{x:current.x+1, y:current.y+1, prev:current}];
-        //if not in history, add and explore
-        for(i = 0; i < nextStates.length; i++){
-            var ns = nextStates[i];
-            if(ns.x >= grid.length || ns.y >= grid.length) continue;
-            if(history[hash(ns)] === undefined){
-                ns.cost = grid[ns.y][ns.x] + current.cost + 1;
-                history[hash(ns)] = true;
-                stack.unshift(ns);
-            }
-        }
-    }
-    var ret = [];
-    while(final != undefined){
-        ret.unshift(final);
-        final = final.prev;
-    }
-    ret.forEach(function(x){
-        console.log(x.x, x.y);
-    });
-}
-
-
 angular.module('LDiff').controller('LDiff',
 ['$scope', function($scope){
     $scope.appName = 'q-diff';
@@ -64,83 +20,7 @@ angular.module('LDiff').controller('LDiff',
         $scope.input2 = tmp;
     };
     
-    $scope.swap();
-    
     $scope.process = function(){
-        var lines1 = $scope.input1.split('\n');
-        var lines2 = $scope.input2.split('\n');
-        var output = [];
-        /*
-            either, lines are same
-            or: this line is missing from lines2
-            or: this lines1 is missing the line from line2
-        */
-        var _ = function(l1, l2){
-            var output = [];
-            if(l1 >= lines1.length && l2 >= lines2.length){
-                return { cost : 0, output : output};   
-            }else if(l1 >= lines1.length){//l2 has added lines
-                //console.log('l2 has added lines');
-                while(l2 < lines2.length)
-                    output.push({type : 'add', str : lines2[l2++]});
-                return { cost : lines2.length - l2, output : output};   
-            }else if(l2 >= lines2.length){
-                //console.log('l1 has added lines');
-                while(l1 < lines1.length)
-                    output.push({type : 'keep', str : lines1[l1++]});
-                return { cost : lines1.length - l1, output : output};   
-            }
-            
-            var tmp1, tmp2;
-            
-            if(lines1[l1] == lines2[l2]){
-                //console.log(tmp1, 'equal');
-                output.push({type : 'same', str : lines1[l1]});
-                var ret = _(l1+1, l2+1);
-                return {cost : ret.cost, output : output.concat(ret.output) };
-            }else{
-                //test l1 is missing from l2
-                tmp1 = lines1[l1];
-                var ret1 = _(l1+1, l2);
-                var cost1 = ret1.cost + 1;
-                //test l2[0] is missing from l1
-                tmp2 = lines2[l2];
-                var ret2 = _(l1, l2+1);
-                var cost2 = ret2.cost + 1;
-                if(cost1 <= cost2){
-                    //console.log('c1');
-                    output.push({type : 'del', str : tmp1});
-                    return {cost : cost1, output : output.concat(ret1.output)};
-                }else{
-                    //console.log('c2');
-                    output.push({type : 'add', str : tmp2});
-                    return {cost : cost2, output : output.concat(ret2.output)};
-                }
-            }
-            
-        };
-        
-        output = _(0, 0).output;
-        output = output.map(x => {return {type:x.type, str:[x.str]}});
-        var tmp = output;
-        output = [];
-        for(var i =0; i < tmp.length; i++){
-            if(output.length == 0 || output[output.length-1].type != tmp[i].type) output.push(tmp[i]);
-            else{
-                output[output.length-1].str = output[output.length-1].str.concat(tmp[i].str);
-            } 
-        }
-        //console.log(output);
-        output.forEach(function(x){
-            console.log(x.type + ' : ' + x.str);
-        });
-        
-        
-        $scope.output = output;
-        
-    };
-    
-    $scope.process2 = function(){
         var lines1 = $scope.input1.split('\n');
         var lines2 = $scope.input2.split('\n');
         var N = Math.max(lines1.length, lines2.length);
@@ -252,6 +132,6 @@ angular.module('LDiff').controller('LDiff',
     };
 
     
-    //$scope.process2();
+    
     
 }]);
