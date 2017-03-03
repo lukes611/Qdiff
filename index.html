@@ -13,7 +13,7 @@
         </div>
         
         <!-- input container -->
-        <div id="inputContainer">
+        <div id="inputContainer" ng-show="output.length==0">
 
             <!-- input 1 -->
             <div class="inputDiv">
@@ -27,13 +27,18 @@
                 <textarea class="taInput" ng-model="input2"></textarea>
             </div>
         
-            <button id="computeButton">compute</button>
+            <button id="computeButton" ng-click="process2()">compute</button>
         </div>
             
         
         
         <!-- output -->
-        <div>
+        <div id="outputContainer">
+            <div ng-repeat="x in output">
+                <div ng-repeat="y in x.str track by $index" ng-style="getLineCSS(x.type)">
+                    {{y}}
+                </div>
+            </div>
         </div>
         
     </body>

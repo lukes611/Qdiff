@@ -58,3 +58,12 @@ body{
     position : relative;
     left : -60px;
 }
+
+/* output */
+
+#outputContainer{
+    background-color : red;
+    width : 100%;
+    display : inline-block;
+    margin-top : 10px;
+}
