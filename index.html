@@ -19,12 +19,19 @@
             <!-- input 1 -->
             <div class="inputDiv">
                 <div class="inputName">input #1</div>
+                <div>
+                    <button class="genericButton" ng-click="input1 = ''">clear</button>
+                    <button class="genericButton" ng-click="swap()">swap</button>
+                </div>
                 <textarea class="taInput" ng-model="input1" ></textarea>
             </div>
 
             <!-- input 2 -->
             <div class="inputDiv">
                 <div class="inputName">input #2</div>
+                <div>
+                    <button class="genericButton" ng-click="input2 = ''">clear</button>
+                </div>
                 <textarea class="taInput" ng-model="input2"></textarea>
             </div>
         
