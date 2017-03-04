@@ -50,9 +50,9 @@
         <div id="outputContainer" ng-show="output.length > 0">
             <button id="backButton" class="genericButton" ng-click="output = []">back</button>
             <div ng-repeat="x in output">
-                <div ng-repeat="y in x.lines track by $index" ng-style="getLineCSS(x.type)">
+                <pre class="codeOut" ng-repeat="y in x.lines track by $index" ng-style="getLineCSS(x.type)">
                     {{y.line}}
-                </div>
+                </pre>
             </div>
         </div>
         

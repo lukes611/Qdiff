@@ -31,17 +31,17 @@ angular.module('index').controller('index',
     };
     
     $scope.getLineCSS = function(type){
-        var color = 'green';
-        if(type == 'del') color = 'red';
+        var color = '#ACF5AC';
+        if(type == 'del') color = '#FF959D';
         else if(type == 'keep') color = 'white'
-        return {'background-color' : color, border: '1px solid pink'};
+        return {'background-color' : color};
     };
     
     $scope.load(1);
     $scope.load(2);
     
     //$scope.swap();
-    //$scope.process();
+    $scope.process();
     
     
 }]);
