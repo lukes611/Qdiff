@@ -1,9 +1,9 @@
-angular.module('index', ['ldiff']);
+angular.module('index', ['ldiff', 'LLocal']);
 angular.module('index').controller('index',
-['$scope', 'ldiff', function($scope, ldiff){
+['$scope', 'ldiff', 'LLocal', function($scope, ldiff, LLocal){
     $scope.appName = 'q-diff';
-    $scope.input1 = 'hello';
-    $scope.input2 = 'hello\nworld';
+    $scope.input1 = '';
+    $scope.input2 = '';
     
     $scope.output = [];
     
@@ -11,6 +11,17 @@ angular.module('index').controller('index',
         var tmp = $scope.input1;
         $scope.input1 = $scope.input2;
         $scope.input2 = tmp;
+    };
+    
+    $scope.save = function(input){
+        LLocal.set('input' + input, $scope['input' + input]);
+    };
+    
+    $scope.load = function(input){
+        var x = LLocal.get('input' + input);
+        if(x !== undefined)
+            $scope['input' + input] = x;
+        else $scope['input' + input] = '';
     };
     
     $scope.process = function(){
@@ -25,6 +36,10 @@ angular.module('index').controller('index',
         else if(type == 'keep') color = 'white'
         return {'background-color' : color, border: '1px solid pink'};
     };
+    
+    $scope.load(1);
+    $scope.load(2);
+    
     //$scope.swap();
     //$scope.process();
     

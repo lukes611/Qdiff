@@ -4,6 +4,7 @@
         <link rel="stylesheet" type="text/css" href="index.css">
         <script src="angular.js"></script>
         <script src="LDiff.js"></script>
+        <script src="LLocal.js"></script>
         <script src="index.js"></script>
     </head>
     <body>
@@ -22,6 +23,8 @@
                 <div>
                     <button class="genericButton" ng-click="input1 = ''">clear</button>
                     <button class="genericButton" ng-click="swap()">swap</button>
+                    <button class="genericButton" ng-click="save(1)">save</button>
+                    <button class="genericButton" ng-click="load(1)">load</button>
                 </div>
                 <textarea class="taInput" ng-model="input1" ></textarea>
             </div>
@@ -31,6 +34,9 @@
                 <div class="inputName">input #2</div>
                 <div>
                     <button class="genericButton" ng-click="input2 = ''">clear</button>
+                        <button class="genericButton" ng-click="save(2)">save</button>
+                    <button class="genericButton" ng-click="load(2)">load</button>
+                
                 </div>
                 <textarea class="taInput" ng-model="input2"></textarea>
             </div>
