@@ -33,7 +33,7 @@ body{
 .inputDiv{
     width : 45%;
     border : 2px solid white;
-    height : 500px;
+    height : 400px;
     float : left;
     margin-left : 1.5%;
     margin-right : 1.5%;
@@ -44,14 +44,22 @@ body{
 
 .taInput{
     width : 98%;
-    height : 420px;
+    height : 360px;
 }
 
-#computeButton{
+.genericButton{
     color : white;
     background-color : black;
     border : 2px solid white;
-    margin-top : 2px;
+    font-size : 16px;
+}
+
+#backButton{
+    margin : 10px;
+}
+
+#computeButton{
+    margin-top : 10px;
     font-size : 18px;
     margin-left : 50%;
     width : 120px;
@@ -62,8 +70,8 @@ body{
 /* output */
 
 #outputContainer{
-    background-color : red;
     width : 100%;
     display : inline-block;
     margin-top : 10px;
 }
+

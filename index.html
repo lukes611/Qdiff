@@ -1,8 +1,9 @@
 <!DOCTYPE html>
-<html ng-app="LDiff" ng-controller="LDiff">
+<html ng-app="index" ng-controller="index">
     <head>
         <link rel="stylesheet" type="text/css" href="index.css">
         <script src="angular.js"></script>
+        <script src="LDiff.js"></script>
         <script src="index.js"></script>
     </head>
     <body>
@@ -27,16 +28,17 @@
                 <textarea class="taInput" ng-model="input2"></textarea>
             </div>
         
-            <button id="computeButton" ng-click="process()">compute</button>
+            <button id="computeButton" class="genericButton" ng-click="process()">compute</button>
         </div>
             
         
         
         <!-- output -->
-        <div id="outputContainer">
+        <div id="outputContainer" ng-show="output.length > 0">
+            <button id="backButton" class="genericButton" ng-click="output = []">back</button>
             <div ng-repeat="x in output">
-                <div ng-repeat="y in x.str track by $index" ng-style="getLineCSS(x.type)">
-                    {{y}}
+                <div ng-repeat="y in x.lines track by $index" ng-style="getLineCSS(x.type)">
+                    {{y.line}}
                 </div>
             </div>
         </div>
